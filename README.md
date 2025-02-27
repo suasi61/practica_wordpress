@@ -1,1 +1,1 @@
-# practica_wordpress
+# wordpress
