@@ -26,50 +26,28 @@
             <div class="Latest_post">
                 <h5><strong>Latest Post</strong></h5>
             </div>
-            <div class="primera_serie_de_posts">
-                <div class="post">
-                    <div>
-                        <img src="img/Rectangle 38.png" alt="" class="card">
+            <section>
+                <div class=row>
+                <?php
+                // Repetir el mismo post tres veces manualmente
+                for ($i = 0; $i < 3; $i++): ?>
+                    <div class="post">
+                        <div>
+                            <img src="img/Rectangle 38 (3).png" alt="" class="card">
+                        </div>
+                        <div class="color_span">
+                            <span class="badge text-bg-light">Technology</span>
+                        </div>
+                        <div>
+                            <h5><strong>The Impact of Technology on the Workplace: How Technology is Changing</strong></h5>
+                        </div>
+                        <div>
+                            <p><img src="img/Image (4).png" alt=""> Ernis Smith  August 20, 2022</p>
+                        </div>
                     </div>
-                    <div class="color_span">
-                        <span class="badge text-bg-light">Technology</span>
-                    </div>
-                    <div>
-                        <h5><strong>The Impact of Technology on the Workplace: How Technology is Changing</strong></h5>
-                    </div>
-                    <div>
-                        <p><img src="img/Image (2).png" alt="">Tracey Wilson August 20, 2022</p>
-                    </div>
-                </div>
-                <div class="post">
-                    <div>
-                        <img src="img/Rectangle 38 (1).png" alt="" class="card">
-                    </div>
-                    <div class="color_span">
-                        <span class="badge text-bg-light">Technology</span>
-                    </div>
-                    <div>
-                        <h5><strong>The Impact of Technology on the Workplace: How Technology is Changing</strong></h5>
-                    </div>
-                    <div>
-                        <p><img src="img/Image (1).png" alt="">Jason Francisco  August 20, 2022</p>
-                    </div>
-                </div>
-                <div class="post">
-                    <div>
-                        <img src="img/Rectangle 38 (2).png" alt="" class="card">
-                    </div>
-                    <div class="color_span">
-                        <span class="badge text-bg-light">Technology</span>
-                    </div>
-                    <div>
-                        <h5><strong>The Impact of Technology on the Workplace: How Technology is Changing</strong></h5>
-                    </div>
-                    <div>
-                        <p><img src="img/Image (3).png" alt="">Elizabeth Slavin  August 20, 2022</p>
-                    </div>
-                </div>
-            </div>
+                <?php endfor; ?>
+
+            </section>
             <div class="segunda_serie_de_posts">
                 <div class="post">
                     <div>
