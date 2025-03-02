@@ -1,0 +1,75 @@
+<?php get_header(); ?>
+<body>
+    <header>
+        <div class="Doe">
+            <div class="Doe-2">
+                <p><img src="img/Image (1).png" alt=""><strong>Jonathan Doe</strong></p>
+                <p><small>Collaborator & Editor</small></p>
+            </div>
+            <div class="Doe-2">
+                <p>Meet Jonathan Doe, a passionate writer and blogger with a love for
+                    technology and travel. Jonathan holds a degree in Computer Science and
+                    has spent years working in the tech industry, gaining a deep understanding 
+                    of the impact technology has on our lives.
+                </p>
+                <div>
+                    <img src="img/a-button.png" alt="">
+                    <img src="img/a-button (1).png" alt="">
+                    <img src="img/a-button (2).png" alt="">
+                    <img src="img/a-button (3).png" alt="">
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="posts">
+            <div class="Latest_post">
+                <h5><strong>Latest Posts</strong></h5>
+            </div>
+            <section>
+                <div class="row">
+                <?php
+                // Configurar el query de WordPress para obtener los últimos posts
+                $args = array(
+                    'post_type'      => 'post',
+                    'posts_per_page' => 6, // Número de posts a mostrar
+                );
+                $query = new WP_Query($args);
+
+                if ($query->have_posts()) :
+                    while ($query->have_posts()) : $query->the_post();
+                ?>
+                    <div class="post">
+                        <div>
+                            <a href="<?php the_permalink(); ?>">
+                                <?php if (has_post_thumbnail()) : ?>
+                                    <?php the_post_thumbnail('medium', ['class' => 'card']); ?>
+                                <?php else : ?>
+                                    <img src="img/default-image.png" alt="" class="card">
+                                <?php endif; ?>
+                            </a>
+                        </div>
+                        <div class="color_span">
+                            <span class="badge text-bg-light"><?php the_category(', '); ?></span>
+                        </div>
+                        <div>
+                            <h5><strong><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></strong></h5>
+                        </div>
+                        <div>
+                            <p><img src="img/Image (4).png" alt=""> <?php the_author(); ?> - <?php the_time('F j, Y'); ?></p>
+                        </div>
+                    </div>
+                <?php
+                    endwhile;
+                    wp_reset_postdata();
+                else :
+                    echo '<p>No posts found.</p>';
+                endif;
+                ?>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+<?php get_footer(); ?>
+</html>

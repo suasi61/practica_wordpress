@@ -8,3 +8,9 @@ function mss_add_theme_scripts() {
 }
 
 add_action('wp_enqueue_scripts', 'mss_add_theme_scripts');
+
+function mss_register_my_menu(){
+    register_nav_menu('primary', __('Menu de la capçelera') ) ;
+}
+
+add_action('init','mss_register_my_menu');

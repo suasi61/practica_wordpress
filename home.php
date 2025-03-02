@@ -1,142 +1,69 @@
-<?php get_header() ?>
-<body>
-    <header>
-        <div class="Doe">
-            <div class="Doe-2">
-                <p><img src="img/Image (1).png" alt=""><strong>Jonathan Doe</strong></p>
-                <p><small>Collaborator & Editor</small></p>
-            </div>
-            <div class="Doe-2">
-                <p>Meet Jonathan Doe, a passionate writer and blogger with a love for
-                    technology and travel. Jonathan holds a degree in Computer Science and
-                    has spent years working in the tech industry, gaining a deep understanding 
-                    of the impact technology has on our lives.
-                </p>
-                <div>
-                    <img src="img/a-button.png" alt="">
-                    <img src="img/a-button (1).png" alt="">
-                    <img src="img/a-button (2).png" alt="">
-                    <img src="img/a-button (3).png" alt="">
-                </div>
-            </div>
-        </div>
-    </header>
-    <main>
-        <div class="posts">
-            <div class="Latest_post">
-                <h5><strong>Latest Post</strong></h5>
-            </div>
-            <section>
-                <div class=row>
-                <?php
-                // Repetir el mismo post tres veces manualmente
-                for ($i = 0; $i < 3; $i++): ?>
-                    <div class="post">
-                        <div>
-                            <img src="img/Rectangle 38 (3).png" alt="" class="card">
-                        </div>
-                        <div class="color_span">
-                            <span class="badge text-bg-light">Technology</span>
-                        </div>
-                        <div>
-                            <h5><strong>The Impact of Technology on the Workplace: How Technology is Changing</strong></h5>
-                        </div>
-                        <div>
-                            <p><img src="img/Image (4).png" alt=""> Ernis Smith  August 20, 2022</p>
-                        </div>
-                    </div>
-                <?php endfor; ?>
+<?php get_header(); ?>
 
-            </section>
-            <div class="segunda_serie_de_posts">
-                <div class="post">
-                    <div>
-                        <img src="img/Rectangle 38 (3).png" alt="" class="card">
-                    </div>
-                    <div class="color_span">
-                        <span class="badge text-bg-light">Technology</span>
-                    </div>
-                    <div>
-                        <h5><strong>The Impact of Technology on the Workplace: How Technology is Changing</strong></h5>
-                    </div>
-                    <div>
-                        <p><img src="img/Image (4).png" alt="">Ernis Smith  August 20, 2022</p>
-                    </div>
-                </div>
-                <div class="post">
-                    <div>
-                        <img src="img/Rectangle 38 (4).png" alt="" class="card">
-                    </div>
-                    <div class="color_span">
-                        <span class="badge text-bg-light">Technology</span>
-                    </div>
-                    <div>
-                        <h5><strong>The Impact of Technology on the Workplace: How Technology is Changing</strong></h5>
-                    </div>
-                    <div>
-                        <p><img src="img/Image (5).png" alt="">Eric Smith  August 20, 2022</p>
-                    </div>
-                </div>
-                <div class="post">
-                    <div>
-                        <img src="img/Rectangle 38 (9).png" alt="" class="card">
-                    </div>
-                    <div class="color_span">
-                        <span class="badge text-bg-light">Technology</span>
-                    </div>
-                    <div>
-                        <h5><strong>The Impact of Technology on the Workplace: How Technology is Changing</strong></h5>
-                    </div>
-                    <div>
-                        <p><img src="img/Image (2).png" alt="">Tracey Wilsown  August 20, 2022</p>
-                    </div>
-                </div>
-            <div class="tercera_de_hosts">
-                <div class="post">
-                    <div>
-                        <img src="img/Rectangle 38 (6).png" alt="" class="card">
-                    </div>
-                    <div class="color_span">
-                        <span class="badge text-bg-light">Technology</span>
-                    </div>
-                    <div>
-                        <h5><strong>The Impact of Technology on the Workplace: How Technology is Changing</strong></h5>
-                    </div>
-                    <div>
-                        <p><img src="img/Image (1).png" alt="">Jason Francisco  August 20, 2022</p>
-                    </div>
-                </div>
-                <div class="post">
-                    <div>
-                        <img src="img/Rectangle 38 (7).png" alt="" class="card">
-                    </div>
-                    <div class="color_span">
-                        <span class="badge text-bg-light">Technology</span>
-                    </div>
-                    <div>
-                        <h5><strong>The Impact of Technology on the Workplace: How Technology is Changing</strong></h5>
-                    </div>
-                    <div>
-                        <p><img src="img/Image (3).png" alt="">Elizabeth Slavin  August 20, 2022</p>
-                    </div>
-                </div>
-                <div class="post">
-                    <div>
-                        <img src="img/Rectangle 38 (8).png" alt="" class="card">
-                    </div>
-                    <div class="color_span">
-                        <span class="badge text-bg-light">Technology</span>
-                    </div>
-                    <div>
-                        <h5><strong>The Impact of Technology on the Workplace: How Technology is Changing</strong></h5>
-                    </div>
-                    <div>
-                        <p><img src="img/Image (4).png" alt="">Ernie Smith  August 20, 2022</p>
-                    </div>
-                </div>
-            </div>
+<main>
+    <div class="box">
+        <div class="latest_post">
+            <h5><strong>Latest Posts</strong></h5>
         </div>
-    </main>
-</body>
-<?php get_footer() ?>
-</html>
+
+        <div class="row">
+            <?php
+            // Obtener la página actual para la paginación
+            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+            // Configurar la consulta de WordPress para obtener los últimos posts
+            $args = array(
+                'post_type'      => 'post',
+                'posts_per_page' => 10, // Número de posts por página
+                'paged'          => $paged, // Soporte para paginación
+            );
+
+            $query = new WP_Query($args);
+
+            if ($query->have_posts()) :
+                while ($query->have_posts()) : $query->the_post(); ?>
+                    <div class="post">
+                        <a href="<?php the_permalink(); ?>">
+                            <?php 
+                            if (has_post_thumbnail()) {
+                                $post_thumbnail_id = get_post_thumbnail_id();
+                                $post_thumbnail_url = wp_get_attachment_image_src($post_thumbnail_id, 'large')[0]; // Obtiene la URL de la imagen destacada
+                            } else {
+                                $post_thumbnail_url = get_template_directory_uri() . '/img/default-image.png'; // Imagen por defecto
+                            }
+                            ?>
+                            <img src="<?php echo esc_url($post_thumbnail_url); ?>" alt="<?php the_title(); ?>" class="card" style="width:100%; height:auto;">
+                        </a>
+
+                        <h5><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
+                        <p><?php the_excerpt(); ?></p>
+                        <p><span class="badge text-bg-light"><?php the_category(', '); ?></span></p>
+                        <p>
+                            <img src="<?php echo get_template_directory_uri(); ?>/img/author.png" alt="Author">
+                            <?php the_author(); ?> - <?php the_time('F j, Y'); ?>
+                        </p>
+                    </div>
+                <?php endwhile; ?>
+
+                <!-- Paginación -->
+                <div class="pagination">
+                    <?php
+                    echo paginate_links(array(
+                        'total'     => $query->max_num_pages,
+                        'current'   => $paged,
+                        'prev_text' => __('« Anterior'),
+                        'next_text' => __('Siguiente »'),
+                    ));
+                    ?>
+                </div>
+
+                <?php wp_reset_postdata(); ?>
+
+            <?php else : ?>
+                <p>No posts found.</p>
+            <?php endif; ?>
+        </div>
+    </div>
+</main>
+
+<?php get_footer(); ?>
