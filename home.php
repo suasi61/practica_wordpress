@@ -23,17 +23,18 @@
             if ($query->have_posts()) :
                 while ($query->have_posts()) : $query->the_post(); ?>
                     <div class="post">
-                        <a href="<?php the_permalink(); ?>">
-                            <?php 
-                            if (has_post_thumbnail()) {
-                                $post_thumbnail_id = get_post_thumbnail_id();
-                                $post_thumbnail_url = wp_get_attachment_image_src($post_thumbnail_id, 'large')[0]; // Obtiene la URL de la imagen destacada
-                            } else {
-                                $post_thumbnail_url = get_template_directory_uri() . '/img/default-image.png'; // Imagen por defecto
-                            }
-                            ?>
-                            <img src="<?php echo esc_url($post_thumbnail_url); ?>" alt="<?php the_title(); ?>" class="card" style="width:100%; height:auto;">
+                    <a href="<?php the_permalink(); ?>">
+                        <?php 
+                        if (has_post_thumbnail()) {
+                            $post_thumbnail_id = get_post_thumbnail_id();
+                            $post_thumbnail_url = wp_get_attachment_image_src($post_thumbnail_id, 'large')[0]; // Obtiene la URL de la imagen destacada
+                        } else {
+                            $post_thumbnail_url = get_template_directory_uri() . '/img/default-image.png'; // Imagen por defecto
+                        }
+                        ?>
+                        <img src="<?php echo esc_url($post_thumbnail_url); ?>" alt="<?php the_title(); ?>" class="card" style="width:100%; height:auto;">
                         </a>
+                        <h2 style="display:none;"><?php the_title(); ?></h2>
 
                         <h5><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
                         <p><?php the_excerpt(); ?></p>
