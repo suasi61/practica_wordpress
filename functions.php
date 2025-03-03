@@ -14,3 +14,8 @@ function mss_register_my_menu(){
 }
 
 add_action('init','mss_register_my_menu');
+
+
+function get_theme_image($filename) {
+    return get_template_directory_uri() . '/img/' . $filename;
+}
